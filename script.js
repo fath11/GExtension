@@ -33,14 +33,16 @@ function reload_code_preview() {
       var func = document.getElementById('func' + (i === 0 ? '' : i));
 
       if (opcode && blocktype && isterminal && blockallthreads && text && func) {
-        codePreview.innerHTML = `{
+        codePreview.innerHTML =
+          `{
         <br>opcode:'${opcode.value}',
         <br>blockType: Scratch.BlockType.${blocktype.value},
-        <br> isTerminal: ${isterminal.value},
-        <br> blockAllThreads: ${blockallthreads.value},
-        <br> text: '${text.value}',
-        <br> func: '${func.value}',
-        <br>},`
+        <br>isTerminal: ${isterminal.value},
+        <br>blockAllThreads: ${blockallthreads.value},
+        <br>text: '${text.value}',
+        <br>func: '${func.value}',
+        \n},`
+        Prism.highlightElement(codePreview);
       }
     }
   }
@@ -60,18 +62,20 @@ function update_full_code() {
       var func = document.getElementById('func' + (i === 0 ? '' : i));
 
       if (opcode && blocktype && isterminal && blockallthreads && text && func) {
-        fullcode.innerHTML += `<br> {
-        <br> opcode:'${opcode.value}',
-        <br> blockType: Scratch.BlockType.${blocktype.value},
-        <br> isTerminal: ${isterminal.value},
-        <br> blockAllThreads: ${blockallthreads.value},
-        <br> text: '${text.value}',
-        <br> func: '${func.value}',
-        <br> },`
+        fullcode.innerHTML +=
+          `\n{
+        opcode:'${opcode.value}',
+        blockType: Scratch.BlockType.${blocktype.value},
+        isTerminal: ${isterminal.value},
+        blockAllThreads: ${blockallthreads.value},
+        text: '${text.value}',
+        func: '${func.value}',
+        \n},`
+        Prism.highlightElement(fullcode);
       }
     }
   }
-  fullcode.innerHTML += "<br>]"
+  fullcode.innerHTML += "<br>],"
 }
 
 function update_func_name_in_func_content(funcContent, func) {
@@ -88,6 +92,8 @@ function update_func_name_in_func_content(funcContent, func) {
 
     // Replace the text between "function" and "()" and update the textbox value
     funcContent.textContent = textBeforeFunction + " " + func + textAfterParentheses;
+    funcContent.setAttribute('contenteditable', 'true');
+    Prism.highlightElement(funcContent);
   } else {
     console.log('"function" or "()" not found, or not in the correct order');
   }

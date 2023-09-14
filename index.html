@@ -3,13 +3,15 @@
 
 <head>
   <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/prism-theme-one-light-dark@1.0.4/prism-onedark.min.css" rel="stylesheet" />
 
 </head>
 
 <body>
   <div class="toolbox">
     <button onclick="duplicateDiv()" class="newblock">New block</button>
-    <button onclick="update_full_code()" class="reloadblock">Reload blocks</button>
+    <button onclick="update_full_code();
+" class="reloadblock">Reload blocks</button>
   </div>
   <div class="website">
     <div class="blocks">
@@ -38,27 +40,29 @@
             </select>
           </p>
           <p>text: <input type="text" id="text" name="Text"></p>
-          <p
-            oninput='update_func_name_in_func_content(this.nextElementSibling, this.children[0].value); Prism.highlightElement(language-javascript);'>
-            func: <input type='text' id='func' name='Func' placeholder='The function name for your block'>
+          <p oninput='update_func_name_in_func_content(this.nextElementSibling, this.children[0].value)'>
+            func: <input type='text' id='func' name='Func'>
           </p>
-          <div class='funcContent' contenteditable='true' style='padding:10px 5px;'>
-            function () {}
-          </div>
+          <pre><code class="language-javascript" contenteditable="true"><p class="funcContent">function () {}</p></code></pre>
 
         </div>
         <div class='previewstuff'>
-          <p id='codepreview'></p>
+          <pre><code class="language-javascript"><p id='codepreview'></p></code></pre>
           <object data='scratchblock.html' class='displayblock' id='displayBlock'></object>
         </div>
       </div>
     </div>
     <div class="codearea">
-      <p class="fullcode"></p>
+      <pre><code class="language-javascript"><p class="fullcode"></p></code></pre>
     </div>
   </div>
 
   <script src='script.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js">
+    document.querySelector('pre code').addEventListener('input', function () {
+      Prism.highlightElement(this);
+    });
+  </script>
 
 </body>
 
