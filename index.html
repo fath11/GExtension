@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <div class="toolbox">
+    <button onclick="duplicateDiv()" class="newblock">New block</button>
+    <button onclick="update_full_code()" class="reloadblock">Reload blocks</button>
+  </div>
+  <div class="website">
+    <div class="blocks">
+      <div id="block" class="block" oninput="reload_code_preview()">
+        <div id="options">
+          <p>opcode: <input type="text" id="opcode" name="opcode"></p>
+          <p>blockType: Scratch.BlockType.
+            <select name="Block types" id="blocktypes" class="dropdown">
+              <option value="COMMAND">COMMAND</option>
+              <option value="REPORER">REPORER</option>
+              <option value="BOOLEAN">BOOLEAN</option>
+              <option value="HAT">HAT</option>
+              <option value="CONDITIONAL">CONDITIONAL</option>
+            </select>
+          </p>
+          <p>isTerminal:
+            <select name="true/false" id="isTerminal" class="dropdown">
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+          </p>
+          <p>blockAllThreads:
+            <select name="true/false" id="blockAllThreads" class="dropdown">
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+          </p>
+          <p>text: <input type="text" id="text" name="Text"></p>
+          <p
+            oninput='update_func_name_in_func_content(this.nextElementSibling, this.children[0].value); Prism.highlightElement(language-javascript);'>
+            func: <input type='text' id='func' name='Func' placeholder='The function name for your block'>
+          </p>
+          <div class='funcContent' contenteditable='true' style='padding:10px 5px;'>
+            function () {}
+          </div>
+
+        </div>
+        <div class='previewstuff'>
+          <p id='codepreview'></p>
+          <object data='scratchblock.html' class='displayblock' id='displayBlock'></object>
+        </div>
+      </div>
+    </div>
+    <div class="codearea">
+      <p class="fullcode"></p>
+    </div>
+  </div>
+
+  <script src='script.js'></script>
+
+</body>
+
+</html>
