@@ -14,7 +14,7 @@ html {
   padding-left: 10px;
   margin-top: 5px;
   height: 500px;
-  width: 1300px;
+  width: 1280px;
   display: flex;
 }
 
@@ -67,17 +67,14 @@ input {
   color: #fff;
 }
 
-.funcContent {
+.language-javascript {
   width: 500px;
-  height: 230px;
-  box-sizing: border-box;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  background-color: #222;
-  border-radius: 4px;
-  border: 2px solid #c60149;
-  overflow: auto;
+  /* Adjust as needed */
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  /* Wraps text and preserves newline characters */
+  word-wrap: break-word;
+  /* Breaks words to prevent overflow */
 }
 
 .dropdown {
@@ -131,4 +128,21 @@ p {
 
 .website {
   display: flex;
+}
+
+/* This is the scrollbar track */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #222;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #333; 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #444; 
 }
