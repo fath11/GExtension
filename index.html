@@ -4,10 +4,16 @@
 <head>
   <link rel="stylesheet" href="style.css">
   <link href="https://cdn.jsdelivr.net/npm/prism-theme-one-light-dark@1.0.4/prism-onedark.min.css" rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.0/font/css/open-iconic-bootstrap.min.css">
+
 
 </head>
 
 <body>
+  <div class="popups">
+    <div id="copied" style="display: none;">Copied to clipboard!</div>
+  </div>
   <div class="extensionSettings">
     <p>Extension Id: <input type="text" id="extId" name="extId"></p>
     <p>Extension name: <input type="text" id="extName" name="extName"></p>
@@ -16,6 +22,8 @@
   <div class="toolbox">
     <button onclick="duplicateDiv()" class="newblock">New block</button>
     <button onclick="update_full_code()" class="reloadblock">Reload blocks</button>
+    <button onclick="copyExtension()" class="copyExtension">Copy extension</button>
+    <button onclick="downloadExtension()" class="downloadExtension">Download extension</button>
   </div>
   <div class="website">
     <div class="blocks">

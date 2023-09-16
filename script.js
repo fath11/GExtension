@@ -88,8 +88,11 @@ class ${extName.value} {
       docsURI: 'https://cocrea.world',
       blocks: [
         ${blocks_info}
-      ]
+      ],
   <br>${update_func_field()}
+    };
+  };
+};
 Scratch.extensions.register(new ${extName.value}())
         `
         Prism.highlightElement(fullcode);
@@ -125,4 +128,49 @@ function update_func_field(funcContent) {
   console.log(funcFieldElement.textContent)
   return ""
   // return funcFieldElement.textContent
+}
+
+function Copied() {
+  let popup = document.getElementById('copied');
+  popup.style.display = 'block';
+
+  setTimeout(function() {
+    popup.style.display = 'none';
+  }, 2000); // Hide after 2 seconds
+}
+
+function downloadExtension() {
+  // Get the element
+  let element = document.querySelector('.fullcode');
+
+  var extName = document.getElementById('extName')
+
+  // Get the content of the element
+  let content = element.textContent || element.innerText;
+
+  // Create a Blob with the content
+  let blob = new Blob([content], { type: "text/plain" });
+
+  // Create a download link for the Blob
+  let url = window.URL.createObjectURL(blob);
+  let a = document.createElement("a");
+  a.href = url;
+  a.download = `${extName.value}.txt`;
+
+  // Append the link to the body (needed for Firefox)
+  document.body.appendChild(a);
+
+  // Simulate a click on the link
+  a.click();
+
+  // Remove the link from the body
+  document.body.removeChild(a);
+}
+
+function copyExtension() {
+  var fullcode = document.querySelector('.fullcode');
+  navigator.clipboard.writeText(fullcode.textContent)
+    .then(() => {
+      Copied();
+    })
 }

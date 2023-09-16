@@ -1,0 +1,23 @@
+{
+  "name": "gextension-dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fath11/Gextensionier.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fath11/Gextensionier/issues"
+  },
+  "homepage": "https://github.com/fath11/Gextensionier#readme",
+  "devDependencies": {
+    "node": "^16.20.2"
+  }
+}
