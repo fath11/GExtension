@@ -1,4 +1,5 @@
 var i = 0;
+var contents = []
 function duplicateDiv() {
   var myDiv = document.getElementById("block");
   var divClone = myDiv.cloneNode(true); // deep cloning
@@ -51,7 +52,7 @@ function reload_code_preview() {
 function update_full_code() {
   var blocks = document.getElementsByClassName('block');
   var fullcode = document.querySelector('.fullcode');
-  fullcode.innerHTML = "blocks: ["
+  var blocks_info = ""
   for (var i = 0; i < blocks.length; i++) {
     if (fullcode) {
       var opcode = document.getElementById('opcode' + (i === 0 ? '' : i));
@@ -60,29 +61,48 @@ function update_full_code() {
       var blockallthreads = document.getElementById('blockAllThreads' + (i === 0 ? '' : i));
       var text = document.getElementById('text' + (i === 0 ? '' : i));
       var func = document.getElementById('func' + (i === 0 ? '' : i));
+      var extId = document.getElementById('extId')
+      var extName = document.getElementById('extName')
+      var color1 = document.getElementById('color1')
 
       if (opcode && blocktype && isterminal && blockallthreads && text && func) {
-        fullcode.innerHTML +=
-          `\n{
-        opcode:'${opcode.value}',
-        blockType: Scratch.BlockType.${blocktype.value},
-        isTerminal: ${isterminal.value},
-        blockAllThreads: ${blockallthreads.value},
-        text: '${text.value}',
-        func: '${func.value}',
-        \n},`
+        blocks_info +=
+          `
+        {
+          opcode:'${opcode.value}',
+          blockType: Scratch.BlockType.${blocktype.value},
+          isTerminal: ${isterminal.value},
+          blockAllThreads: ${blockallthreads.value},
+          text: '${text.value}',
+          func: '${func.value}',
+        },`
+
+        fullcode.innerHTML = `
+class ${extName.value} {
+  getInfo() {
+    return {
+      id: '${extId.value}',
+      name: '${extName.value}',
+      color1: '${color1.value}',
+      blockIconURI: 'iconURI',
+      docsURI: 'https://cocrea.world',
+      blocks: [
+        ${blocks_info}
+      ]
+  <br>${update_func_field()}
+Scratch.extensions.register(new ${extName.value}())
+        `
         Prism.highlightElement(fullcode);
       }
     }
   }
-  fullcode.innerHTML += "<br>],"
 }
 
 function update_func_name_in_func_content(funcContent, func) {
 
-  // Find the position of "function" and "()"
+  // Find the position of "function" and "("
   var functionPosition = funcContent.textContent.indexOf("function") + "function".length;
-  var parenthesesPosition = funcContent.textContent.indexOf("()");
+  var parenthesesPosition = funcContent.textContent.indexOf("(");
 
   // Check if "function" and "()" are found and in the correct order
   if (functionPosition > -1 && parenthesesPosition > -1 && functionPosition < parenthesesPosition) {
@@ -99,4 +119,10 @@ function update_func_name_in_func_content(funcContent, func) {
   }
 }
 
+function update_func_field(funcContent) {
+  let funcFieldElement = document.querySelector('code');
 
+  console.log(funcFieldElement.textContent)
+  return ""
+  // return funcFieldElement.textContent
+}

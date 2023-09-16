@@ -8,10 +8,14 @@
 </head>
 
 <body>
+  <div class="extensionSettings">
+    <p>Extension Id: <input type="text" id="extId" name="extId"></p>
+    <p>Extension name: <input type="text" id="extName" name="extName"></p>
+    <p>Color 1: <input type="color" id="color1" name="color1" value="#ff005c"></p>
+  </div>
   <div class="toolbox">
     <button onclick="duplicateDiv()" class="newblock">New block</button>
-    <button onclick="update_full_code();
-" class="reloadblock">Reload blocks</button>
+    <button onclick="update_full_code()" class="reloadblock">Reload blocks</button>
   </div>
   <div class="website">
     <div class="blocks">
@@ -43,7 +47,8 @@
           <p oninput='update_func_name_in_func_content(this.nextElementSibling, this.children[0].value)'>
             func: <input type='text' id='func' name='Func'>
           </p>
-          <pre><code class="language-javascript" contenteditable="true"><p>function () {}</p></code></pre>
+          <pre><code class="language-javascript" contenteditable="true"><p id="funcField">function () {}</p></code>
+          </pre>
 
         </div>
         <div class='previewstuff'>
@@ -59,7 +64,7 @@
 
   <script src='script.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js">
-    document.querySelector('pre code').addEventListener('input', function () {
+    document.querySelector('language-javascript').addEventListener('input', function () {
       Prism.highlightElement(this);
     });
   </script>
