@@ -8,12 +8,14 @@ class FATH_COOL_EXTENSION {
       docsURI: 'https://cocrea.world',
       blocks: [
         {
-          opcode:'coolbloxk',
+          opcode: 'coolbloxk',
           blockType: Scratch.BlockType.COMMAND,
           isTerminal: true,
           blockAllThreads: true,
           text: 'Do cool stuff',
           func: '',
         },
-      ]
+      ],
+    }
+  };
 Scratch.extensions.register(new FATH_COOL_EXTENSION())
