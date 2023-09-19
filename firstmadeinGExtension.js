@@ -1,24 +1,27 @@
-class Test {
+class Input {
   getInfo() {
     return {
-      id: 'test',
-      name: 'Test',
-      color1: '#ff005c',
+      id: 'input',
+      name: 'Input',
+      color1: '#b1d56c',
       blockIconURI: 'iconURI',
       docsURI: 'https://cocrea.world',
       blocks: [
-
+        
         {
-          opcode: 'block',
-          blockType: Scratch.BlockType.COMMAND,
-          isTerminal: true,
-          blockAllThreads: true,
-          text: 'Block',
-          func: 'geello',
+          opcode:'input',
+          blockType: Scratch.BlockType.REPORER,
+          isTerminal: false,
+          blockAllThreads: false,
+          text: 'Return [INPUT]',
+          func: 'return_input',
         },
       ],
+    }
+  }
 
-    };
-  };
-};
-Scratch.extensions.register(new Test())
+            return_input (args) {return args.INPUT}
+          
+}
+Scratch.extensions.register(new Input())
+        

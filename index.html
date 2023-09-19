@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <link rel="stylesheet" href="style.css">
   <link href="https://cdn.jsdelivr.net/npm/prism-theme-one-light-dark@1.0.4/prism-onedark.min.css" rel="stylesheet" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.0/font/css/open-iconic-bootstrap.min.css">
 
 
 </head>
@@ -15,9 +13,9 @@
     <div id="copied" style="display: none;">Copied to clipboard!</div>
   </div>
   <div class="extensionSettings">
-    <p>Extension Id: <input type="text" id="extId" name="extId"></p>
-    <p>Extension name: <input type="text" id="extName" name="extName"></p>
-    <p>Color 1: <input type="color" id="color1" name="color1" value="#ff005c"></p>
+    <p>Extension Id: <input type="text" id="extId" name="extId" placeholder="testext"></p>
+    <p>Extension name: <input type="text" id="extName" name="extName" placeholder="Text_Ext"></p>
+    <p>Color 1: <input type="color" id="color1" name="color1" value="#ff005c" placeholder="#ff005c"></p>
   </div>
   <div class="toolbox">
     <button onclick="duplicateDiv()" class="newblock">New block</button>
@@ -29,9 +27,9 @@
     <div class="blocks">
       <div id="block" class="block" oninput="reload_code_preview()">
         <div id="options">
-          <p>opcode: <input type="text" id="opcode" name="opcode"></p>
+          <p>opcode: <input type="text" id="opcode" name="opcode" placeholder="true"></p>
           <p>blockType: Scratch.BlockType.
-            <select name="Block types" id="blocktypes" class="dropdown">
+            <select name="Block types" id="blocktypes" class="dropdown" title="Select your block type">
               <option value="COMMAND">COMMAND</option>
               <option value="REPORER">REPORER</option>
               <option value="BOOLEAN">BOOLEAN</option>
@@ -40,23 +38,21 @@
             </select>
           </p>
           <p>isTerminal:
-            <select name="true/false" id="isTerminal" class="dropdown">
+            <select name="true/false" id="isTerminal" class="dropdown" title="Set isTerminal true/false">
               <option value="true">True</option>
               <option value="false">False</option>
             </select>
           </p>
           <p>blockAllThreads:
-            <select name="true/false" id="blockAllThreads" class="dropdown">
+            <select name="true/false" id="blockAllThreads" class="dropdown" title="Set blockAllThreads true/false">
               <option value="true">True</option>
               <option value="false">False</option>
             </select>
           </p>
-          <p>text: <input type="text" id="text" name="Text"></p>
-          <p oninput='update_func_name_in_func_content(this.nextElementSibling, this.children[0].value)'>
-            func: <input type='text' id='func' name='Func'>
-          </p>
-          <pre><code class="language-javascript" contenteditable="true"><p id="funcField">function () {}</p></code>
-          </pre>
+          <p>text: <input type="text" id="text" name="Text" placeholder="True"></p>
+          <div id="funcField" class="funcField" contenteditable="true">
+            <pre><code class="language-javascript">[Func Name here] (args) {[code here]}</code></pre>
+          </div>
 
         </div>
         <div class='previewstuff'>

@@ -9,15 +9,17 @@ function duplicateDiv() {
   var inputs = divClone.getElementsByTagName('input');
   for (var j = 0; j < inputs.length; j++) {
     inputs[j].id = inputs[j].id + i;
-    inputs[j].oninput = function() { update_func_name_in_func_content(this.parentNode.nextElementSibling, this.value); };
   }
-
   // Update IDs of select fields in cloned div
   var selects = divClone.getElementsByTagName('select');
   for (var j = 0; j < selects.length; j++) {
     selects[j].id = selects[j].id + i;
   }
 
+  var p = document.getElementById('funcField');
+  for (var j = 0; j < p.length; j++) {
+    p[j].id = p[j].id + i;
+  }
   myDiv.parentNode.appendChild(divClone); // append clone to parent of original div
 }
 
@@ -31,9 +33,9 @@ function reload_code_preview() {
       var isterminal = document.getElementById('isTerminal' + (i === 0 ? '' : i));
       var blockallthreads = document.getElementById('blockAllThreads' + (i === 0 ? '' : i));
       var text = document.getElementById('text' + (i === 0 ? '' : i));
-      var func = document.getElementById('func' + (i === 0 ? '' : i));
+      var funcField = document.getElementsByClassName("funcField")[i]
 
-      if (opcode && blocktype && isterminal && blockallthreads && text && func) {
+      if (opcode && blocktype && isterminal && blockallthreads && text && funcField) {
         codePreview.innerHTML =
           `{
         <br>opcode:'${opcode.value}',
@@ -41,9 +43,12 @@ function reload_code_preview() {
         <br>isTerminal: ${isterminal.value},
         <br>blockAllThreads: ${blockallthreads.value},
         <br>text: '${text.value}',
-        <br>func: '${func.value}',
+        <br>func: '${getFunctionName(funcField.textContent)}',
         \n},`
         Prism.highlightElement(codePreview);
+      }
+      else {
+        throw new Error('Haha something is Null, F you ig')
       }
     }
   }
@@ -53,6 +58,7 @@ function update_full_code() {
   var blocks = document.getElementsByClassName('block');
   var fullcode = document.querySelector('.fullcode');
   var blocks_info = ""
+  var funcs = ""
   for (var i = 0; i < blocks.length; i++) {
     if (fullcode) {
       var opcode = document.getElementById('opcode' + (i === 0 ? '' : i));
@@ -60,12 +66,12 @@ function update_full_code() {
       var isterminal = document.getElementById('isTerminal' + (i === 0 ? '' : i));
       var blockallthreads = document.getElementById('blockAllThreads' + (i === 0 ? '' : i));
       var text = document.getElementById('text' + (i === 0 ? '' : i));
-      var func = document.getElementById('func' + (i === 0 ? '' : i));
+      var funcField = document.getElementsByClassName("funcField")[i]
       var extId = document.getElementById('extId')
       var extName = document.getElementById('extName')
       var color1 = document.getElementById('color1')
 
-      if (opcode && blocktype && isterminal && blockallthreads && text && func) {
+      if (opcode && blocktype && isterminal && blockallthreads && text) {
         blocks_info +=
           `
         {
@@ -74,9 +80,9 @@ function update_full_code() {
           isTerminal: ${isterminal.value},
           blockAllThreads: ${blockallthreads.value},
           text: '${text.value}',
-          func: '${func.value}',
+          func: '${getFunctionName(funcField.textContent)}',
         },`
-
+        funcs += `${funcField.textContent}`
         fullcode.innerHTML = `
 class ${extName.value} {
   getInfo() {
@@ -89,45 +95,27 @@ class ${extName.value} {
       blocks: [
         ${blocks_info}
       ],
-  <br>${update_func_field()}
-    };
-  };
-};
+    }
+  }
+${funcs}
+}
 Scratch.extensions.register(new ${extName.value}())
         `
         Prism.highlightElement(fullcode);
+      }
+      else {
+        throw new Error('Haha something is Null, F you ig')
       }
     }
   }
 }
 
-function update_func_name_in_func_content(funcContent, func) {
-
-  // Find the position of "function" and "("
-  var functionPosition = funcContent.textContent.indexOf("function") + "function".length;
-  var parenthesesPosition = funcContent.textContent.indexOf("(");
-
-  // Check if "function" and "()" are found and in the correct order
-  if (functionPosition > -1 && parenthesesPosition > -1 && functionPosition < parenthesesPosition) {
-    // Split the textbox value into three parts
-    var textBeforeFunction = funcContent.textContent.substring(0, functionPosition);
-    var textAfterParentheses = funcContent.textContent.substring(parenthesesPosition);
-
-    // Replace the text between "function" and "()" and update the textbox value
-    funcContent.textContent = textBeforeFunction + " " + func + textAfterParentheses;
-    funcContent.setAttribute('contenteditable', 'true');
-    Prism.highlightElement(funcContent);
-  } else {
-    console.log('"function" or "()" not found, or not in the correct order');
+function getFunctionName(text) {
+  var end = text.indexOf('(');
+  if (end !== -1) {
+    return text.slice(0, end).trim();
   }
-}
-
-function update_func_field(funcContent) {
-  let funcFieldElement = document.querySelector('code');
-
-  console.log(funcFieldElement.textContent)
-  return ""
-  // return funcFieldElement.textContent
+  return null;
 }
 
 function Copied() {
