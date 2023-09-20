@@ -19,7 +19,7 @@ html {
 }
 
 .newblock {
-  background-color: #ff005c;
+  background-color: #a5033d;
   border-radius: 10px;
   border-style: none;
   color: white;
@@ -36,7 +36,7 @@ html {
 }
 
 .reloadblock {
-  background-color: #ff005c;
+  background-color: #a5033d;
   border-radius: 10px;
   border-style: none;
   color: white;
@@ -53,7 +53,7 @@ html {
 }
 
 .downloadExtension {
-  background-color: #ff005c;
+  background-color: #a5033d;
   border-radius: 10px;
   border-style: none;
   color: white;
@@ -70,7 +70,7 @@ html {
 }
 
 .copyExtension {
-  background-color: #ff005c;
+  background-color: #a5033d;
   border-radius: 10px;
   border-style: none;
   color: white;
@@ -87,7 +87,7 @@ html {
 }
 
 button:hover {
-  background-color: #c60149;
+  background-color: #ff005c;
 }
 
 input {
@@ -95,7 +95,7 @@ input {
   box-sizing: border-box;
   padding: 0px 5px;
   margin-top: 5px;
-  border: 2px solid #c60149;
+  border: 2px solid #a5033d;
   background-color: #222;
   border-radius: 4px;
   color: #fff;
@@ -116,7 +116,7 @@ input {
   box-sizing: border-box;
   padding: 0px 5px;
   margin-top: 5px;
-  border: 2px solid #c60149;
+  border: 2px solid #a5033d;
   background-color: #222;
   border-radius: 4px;
   color: #fff;
@@ -186,7 +186,7 @@ p {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: #333;
+  background: #a5033d;
   color: #fff;
   padding: 10px;
   border-radius: 5px;
