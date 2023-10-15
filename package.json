@@ -19,5 +19,8 @@
   "homepage": "https://github.com/fath11/Gextensionier#readme",
   "devDependencies": {
     "node": "^16.20.2"
+  },
+  "dependencies": {
+    "scratchblocks": "^3.6.4"
   }
 }

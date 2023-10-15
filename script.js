@@ -16,42 +16,16 @@ function duplicateDiv() {
     selects[j].id = selects[j].id + i;
   }
 
+  var selects = document.getElementsByTagName('text');
+  for (var j = 0; j < selects.length; j++) {
+    selects[j].id = selects[j].id + i;
+  }
+
   var p = document.getElementById('funcField');
   for (var j = 0; j < p.length; j++) {
     p[j].id = p[j].id + i;
   }
   myDiv.parentNode.appendChild(divClone); // append clone to parent of original div
-}
-
-function reload_code_preview() {
-  var blocks = document.getElementsByClassName('block');
-  for (var i = 0; i < blocks.length; i++) {
-    var codePreview = blocks[i].querySelector('#codepreview');
-    if (codePreview) {
-      var opcode = document.getElementById('opcode' + (i === 0 ? '' : i));
-      var blocktype = document.getElementById('blocktypes' + (i === 0 ? '' : i));
-      var isterminal = document.getElementById('isTerminal' + (i === 0 ? '' : i));
-      var blockallthreads = document.getElementById('blockAllThreads' + (i === 0 ? '' : i));
-      var text = document.getElementById('text' + (i === 0 ? '' : i));
-      var funcField = document.getElementsByClassName("funcField")[i]
-
-      if (opcode && blocktype && isterminal && blockallthreads && text && funcField) {
-        codePreview.innerHTML =
-          `{
-        <br>opcode:'${opcode.value}',
-        <br>blockType: Scratch.BlockType.${blocktype.value},
-        <br>isTerminal: ${isterminal.value},
-        <br>blockAllThreads: ${blockallthreads.value},
-        <br>text: '${text.value}',
-        <br>func: '${getFunctionName(funcField.textContent)}',
-        \n},`
-        Prism.highlightElement(codePreview);
-      }
-      else {
-        throw new Error('Haha something is Null, F you ig')
-      }
-    }
-  }
 }
 
 function update_full_code() {
