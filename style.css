@@ -154,6 +154,7 @@ input {
   /* Wraps text and preserves newline characters */
   word-wrap: break-word;
   /* Breaks words to prevent overflow */
+  float: right;
 }
 
 .dropdown {
@@ -239,4 +240,48 @@ p {
 
 .block-actions {
   display: flex;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  margin-top: 5px;
+  background-color: #222;
+  color: #fff;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active,
+.collapsible:hover {
+  background-color: #222;
+}
+
+.collapsible:after {
+  content: 'V';
+  /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+
+}
+
+.active:after {
+  content: "^";
+  /* Unicode character for "minus" sign (-) */
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.arguments {
+  padding: 0 18px;
+  background-color: #333;
+  max-height: 0px;
+  overflow: auto;
+  transition: max-height 0.2s ease-out;
 }

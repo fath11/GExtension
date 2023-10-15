@@ -175,3 +175,73 @@ function Delete_args() {
     pElement.removeChild(pElement.lastChild);
   }
 }
+
+function listArguments() {
+  var pElement = document.querySelector(".block-texts");
+  var inputs = pElement.getElementsByClassName("block-arg");
+  var argumentsDiv = document.querySelector(".arguments");
+  var argumentsP = argumentsDiv.querySelector("p");
+
+  // Clear the existing content
+  argumentsP.innerHTML = "";
+
+  // Check if there are any input elements
+  if (inputs.length > 0) {
+    for (var i = 0; i < inputs.length; i++) {
+      // Append each value to the <p> element
+      argumentsP.innerHTML += inputs[i].value + ": type: ";
+
+      // Create a new select element and set its attributes
+      var select = document.createElement("select");
+      select.name = "Block types";
+      select.id = "blocktypes" + i;
+      select.className = "dropdown";
+      select.title = "Select your block type";
+
+      // Define the options for the select element
+      var options = ["COMMAND", "REPORTER", "BOOLEAN", "HAT", "CONDITIONAL"];
+
+      // Add each option to the select element
+      for (var j = 0; j < options.length; j++) {
+        var option = document.createElement("option");
+        option.value = options[j];
+        option.text = options[j];
+        select.appendChild(option);
+      }
+
+      // Append the new select element to the <p> element
+      argumentsP.appendChild(select);
+
+      // Create a new input element for the default value and set its attributes
+      var input = document.createElement("input");
+      input.type = "text";
+      input.className = "block-default";
+      input.id = "default" + i;
+      input.name = "Block-Default";
+      input.placeholder = "String";
+
+      // Append the label and new input element to the <p> element
+      argumentsP.innerHTML += " default value: ";
+      argumentsP.appendChild(input);
+
+      // Add a line break after each argument
+      argumentsP.innerHTML += "<br>";
+    }
+  } else {
+    argumentsP.innerHTML = "No arguments detected.";
+  }
+}
+
+var coll = document.getElementsByClassName("collapsible");
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = 100 + "px";
+    }
+  });
+}

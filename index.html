@@ -53,15 +53,30 @@
           </p>
           <p class="block-texts">text:
             <input type="text" class="block-text" id="text" name="Text" placeholder="Do Nothing">
-            <input type="text" class="block-arg" id="arg" name="Arg" placeholder="[INPUT]">
+            <input type="text" class="block-arg" id="arg" name="Arg" placeholder="[INPUT]" oninput="listArguments()">
           </p>
           <div class="block-actions">
             <button class="new-args" id="new-args" onclick="New_args()">New argument</button>
             <button class="delete-args" id="delete-args" onclick="Delete_args()">Delete argument</button>
           </div>
-          <div id="funcField" class="funcField" contenteditable="true">
-            <pre><code class="language-javascript">example(args) {/*noop*/}</code></pre>
+          <button type="button" class="collapsible" id="argument">arguments:</button>
+          <div class="arguments">
+            <p></p>
+            <!-- ONE:
+            type:
+            <select name="Block types" id="blocktypes" class="dropdown" title="Select your block type">
+              <option value="COMMAND">COMMAND</option>
+              <option value="REPORER">REPORER</option>
+              <option value="BOOLEAN">BOOLEAN</option>
+              <option value="HAT">HAT</option>
+              <option value="CONDITIONAL">CONDITIONAL</option>
+            </select>
+            default value:
+            <input type="text" class="block-default" id="default" name="Block-Default" placeholder="String"> -->
           </div>
+        </div>
+        <div id="funcField" class="funcField" contenteditable="true">
+          <pre><code class="language-javascript">example(args) {/*noop*/}</code></pre>
         </div>
       </div>
     </div>
