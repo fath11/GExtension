@@ -5,6 +5,15 @@ html {
   font-family: Arial, sans-serif;
 }
 
+input {
+  height: 30px;
+  margin-left: 5px;
+}
+
+select {
+  height: 30px;
+}
+
 .block {
   color: #fff;
   background-color: #222;
@@ -16,6 +25,7 @@ html {
   height: 500px;
   width: 1280px;
   display: flex;
+  overflow: auto;
 }
 
 .newblock {
@@ -84,6 +94,41 @@ html {
   /* Set the width to 100% */
   font-size: 16px;
   margin-left: 3px;
+}
+
+.new-args {
+  background-color: #a5033d;
+  border-radius: 10px;
+  border-style: none;
+  color: white;
+  padding: 5px 0;
+  /* Adjust as needed */
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  /* Make the button a block element */
+  width: 134px;
+  /* Set the width to 100% */
+  font-size: 16px;
+  margin-left: 3px;
+}
+
+.delete-args {
+  background-color: #a5033d;
+  border-radius: 10px;
+  border-style: none;
+  color: white;
+  padding: 5px 0;
+  /* Adjust as needed */
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  /* Make the button a block element */
+  width: 134px;
+  /* Set the width to 100% */
+  font-size: 16px;
+  margin-left: 3px;
+  margin-top: 3px;
 }
 
 button:hover {
@@ -190,4 +235,8 @@ p {
   color: #fff;
   padding: 10px;
   border-radius: 5px;
+}
+
+.block-actions {
+  display: flex;
 }

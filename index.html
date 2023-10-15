@@ -27,7 +27,7 @@
   </div>
   <div class="website">
     <div class="blocks">
-      <div id="block" class="block" oninput="reload_code_preview()">
+      <div id="block" class="block">
         <div id="options">
           <p>opcode: <input type="text" id="opcode" name="opcode" placeholder="true"></p>
           <p>blockType: Scratch.BlockType.
@@ -51,7 +51,14 @@
               <option value="false">False</option>
             </select>
           </p>
-          <p>text: <input type="text" id="text" name="Text" placeholder="True"></p>
+          <p class="block-texts">text:
+            <input type="text" class="block-text" id="text" name="Text" placeholder="Do Nothing">
+            <input type="text" class="block-arg" id="arg" name="Arg" placeholder="[INPUT]">
+          </p>
+          <div class="block-actions">
+            <button class="new-args" id="new-args" onclick="New_args()">New argument</button>
+            <button class="delete-args" id="delete-args" onclick="Delete_args()">Delete argument</button>
+          </div>
           <div id="funcField" class="funcField" contenteditable="true">
             <pre><code class="language-javascript">example(args) {/*noop*/}</code></pre>
           </div>

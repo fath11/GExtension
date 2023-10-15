@@ -33,6 +33,7 @@ function update_full_code() {
   var fullcode = document.querySelector('.fullcode');
   var blocks_info = ""
   var funcs = ""
+  var block_text = ""
   for (var i = 0; i < blocks.length; i++) {
     if (fullcode) {
       var opcode = document.getElementById('opcode' + (i === 0 ? '' : i));
@@ -40,6 +41,7 @@ function update_full_code() {
       var isterminal = document.getElementById('isTerminal' + (i === 0 ? '' : i));
       var blockallthreads = document.getElementById('blockAllThreads' + (i === 0 ? '' : i));
       var text = document.getElementById('text' + (i === 0 ? '' : i));
+      var arg = document.getElementById('arg' + (i === 0 ? '' : i));
       var funcField = document.getElementsByClassName("funcField")[i]
       var extId = document.getElementById('extId')
       var extName = document.getElementById('extName')
@@ -53,7 +55,7 @@ function update_full_code() {
           blockType: Scratch.BlockType.${blocktype.value},
           isTerminal: ${isterminal.value},
           blockAllThreads: ${blockallthreads.value},
-          text: '${text.value}',
+          text: '${blockTexts(["block" + (i === 0 ? '' : i)])}',
           func: '${getFunctionName(funcField.textContent)}',
         },`
         funcs += `${funcField.textContent}`
@@ -82,6 +84,21 @@ Scratch.extensions.register(new ${extName.value}())
       }
     }
   }
+}
+
+function blockTexts(ids) {
+  var combinedString = "";
+
+  for (var j = 0; j < ids.length; j++) {
+    var pElement = document.getElementById(ids[j]);
+    var elements = pElement.getElementsByTagName("input");
+
+    for (var i = 0; i < elements.length; i++) {
+      combinedString += elements[i].value;
+    }
+  }
+
+  return combinedString;
 }
 
 function getFunctionName(text) {
@@ -135,4 +152,26 @@ function copyExtension() {
     .then(() => {
       Copied();
     })
+}
+
+function New_args() {
+  var pElement = document.querySelector(".block-texts");
+  var text = document.getElementById("text");
+  var arg = document.getElementById("arg");
+  var text_clone = text.cloneNode(true);
+  var arg_clone = arg.cloneNode(true);
+
+  text_clone.id = "text" + (pElement.childElementCount);
+  arg_clone.id = "arg" + (pElement.childElementCount);
+  
+  pElement.appendChild(text_clone);
+  pElement.appendChild(arg_clone);
+}
+
+function Delete_args() {
+  var pElement = document.querySelector(".block-texts");
+  if (pElement.childElementCount > 2) {
+    pElement.removeChild(pElement.lastChild);
+    pElement.removeChild(pElement.lastChild);
+  }
 }
